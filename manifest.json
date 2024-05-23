@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "LeetGuide",
+  "version": "1.0",
+  "description": "This is a leetcode guide",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "public/extension-logo.png"
+  },
+  "background": {
+    "service_worker": "/src/lib/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["/src/lib/content-script.js"]
+    }
+  ],
+  "icons": {
+    "16": "vite.svg",
+    "48": "vite.svg",
+    "128": "vite.svg"
+  }
+}
