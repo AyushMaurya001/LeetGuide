@@ -41,8 +41,6 @@ export default function Hints() {
     }
     let slug = getProblemSlug(url);
     const apiUrl = import.meta.env.VITE_API_URL;
-    console.log(slug);
-    console.log(apiUrl);
     const questionDetailResponse = await fetch(`${apiUrl}/api/v1/question/getQuestionDetailBySlug/${slug}`, {
       method: "GET",
       headers: {

@@ -153,6 +153,10 @@ export default function Home() {
           View Solution
         </NavLink>
 
+        <NavLink className=' w-[16rem] h-[2.2rem] rounded-lg shadow-md border-[0.01rem] border-black/10 font-medium flex justify-center items-center' to={'/conversation'}>
+          Get Help!
+        </NavLink>
+
       </div>
 
       <div className=' flex font-medium gap-2 flex-wrap'>

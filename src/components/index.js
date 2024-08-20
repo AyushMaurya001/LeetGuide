@@ -1,4 +1,5 @@
 import Answer from "./Answer"
+import ConversationComp from "./ConversationComp"
 import Header from "./Header"
 import Hint from "./Hint"
 import Hints from "./Hints"
@@ -10,4 +11,5 @@ export {
   Hints,
   Hint,
   Answer,
+  ConversationComp,
 }

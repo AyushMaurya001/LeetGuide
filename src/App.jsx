@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Chat, Home } from "./pages/index"
+import { Chat, Home, Conversation } from "./pages/index"
 import { Layout } from './components/index'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { backendStatusAtom, pageUrlAtom } from './store/atom'
@@ -28,6 +28,7 @@ export default function App() {
       <Route path='/' element={<Layout />}>
         <Route path='' element={<Home />} />
         <Route path='chat' element={<Chat />} />
+        <Route path='conversation' element={<Conversation />} />
       </Route>
 
     </Routes>
