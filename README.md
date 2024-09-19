@@ -16,6 +16,10 @@ Inorder to build web extension and use it in your browser, run following command
 ```
 npm run build
 ```
+
+Server-side of Leetguide:
+https://github.com/the-t3ch-wizard/LeetGuide-server
+
 Preview of the Leetguide: 
 
 https://github.com/user-attachments/assets/47958ed9-77b3-423c-a504-09010c843e71
