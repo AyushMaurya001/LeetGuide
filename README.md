@@ -9,6 +9,9 @@ Install the dependencies by using following command in the cloned directory:
 ```
 npm install
 ```
+
+Note: Make sure to have the leetguide's server inorder to connect it with the backend, which is required inorder to get question details and other related stuff.
+
 Inorder to build web extension and use it in your browser, run following command:
 ```
 npm run build
