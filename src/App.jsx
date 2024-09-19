@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Chat, Home, Conversation } from "./pages/index"
+import { Chat, Home, Conversation, GithubOAuth } from "./pages/index"
 import { Layout } from './components/index'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { backendStatusAtom, pageUrlAtom } from './store/atom'
-import { getCurrentTabUrl } from './lib/content-script'
+import { getCurrentTabUrl } from './lib/contentScript'
 
 export default function App() {
 
@@ -12,6 +12,8 @@ export default function App() {
   const setBackendStatus = useSetRecoilState(backendStatusAtom);
 
   useEffect(() => {
+    // function to check whether the current website is leetcode or not
+    // if not then just show it to the user
     getCurrentTabUrl().then((val) => setPageUrl(val)).catch((err) => console.log(err, "error at app.jsx"))
     const apiUrl = import.meta.env.VITE_API_URL;
     fetch(`${apiUrl}`, {
@@ -29,6 +31,7 @@ export default function App() {
         <Route path='' element={<Home />} />
         <Route path='chat' element={<Chat />} />
         <Route path='conversation' element={<Conversation />} />
+        <Route path='github-auth' element={<GithubOAuth />} />
       </Route>
 
     </Routes>

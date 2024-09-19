@@ -4,6 +4,8 @@
   "version": "1.0",
   "description": "This is a leetcode guide",
   "permissions": [
+    "activeTab",
+    "scripting",
     "tabs",
     "storage"
   ],
@@ -12,12 +14,12 @@
     "default_icon": "public/extension-logo.png"
   },
   "background": {
-    "service_worker": "/src/lib/service-worker.js"
+    "service_worker": "/src/lib/serviceWorker.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["/src/lib/content-script.js"]
+      "js": ["/src/lib/contentScript.js"]
     }
   ],
   "icons": {

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { answerAtom, answerStatusAtom, hintAtom, hintIdAtom, pageUrlAtom, questionDetailAtom } from '../store/atom';
+import { answerAtom, answerStatusAtom, githubAuthCodeAtom, hintAtom, hintIdAtom, pageUrlAtom, questionDetailAtom } from '../store/atom';
 import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 import { getProblemSlug } from '../lib/utils';
 import Markdown from 'react-markdown';
+import axios from 'axios';
 
 export default function Home() {
 
@@ -11,6 +12,7 @@ export default function Home() {
 
   const setHintId = useSetRecoilState(hintIdAtom);
   const setAnswerStatus = useSetRecoilState(answerStatusAtom);
+  const [githubAuthCode, setGithubAuthCode] = useRecoilState(githubAuthCodeAtom);
 
   const setQuestionDetail = useSetRecoilState(questionDetailAtom);
   const setHint = useSetRecoilState(hintAtom);
@@ -119,6 +121,26 @@ export default function Home() {
 
   }
 
+  const clientId = "Ov23lihcqgWrX9LgMF2d";
+
+  const [auth, setAuth] = useState(false);
+
+  useEffect(() => {
+    const queryParams = window.location.search;
+    const searchParams = new URLSearchParams(queryParams);
+    const params = searchParams.get('code');
+    if (params){
+      localStorage.setItem('github-code', params);
+    }
+    localStorage.setItem('github-code', "c187e0e710d02ad4d669");
+    console.log('github api is', localStorage.getItem('github-code'));
+    if (localStorage.getItem('github-code')){
+      setAuth(true);
+    }
+    // data-e2e-locator="console-run-button"
+    // submitbutton = document.querySelector("div [data-e2e-locator=console-submit-button]");
+  }, []);
+
   return (
     <div className=' w-full flex flex-col justify-center items-center min-h-[15rem] py-10 px-2 gap-5'>
 
@@ -145,7 +167,11 @@ export default function Home() {
 
       <div className=' w-full flex flex-col gap-3 justify-center items-center py-4'>
 
-        <NavLink className=' w-[16rem] h-[2.2rem] bg-gradient-to-b from-blue-500 to-blue-600 text-white rounded-lg shadow-md border-[0.01rem] border-blue-700 font-medium flex justify-center items-center' onClick={getHintHandler} to={'/chat'}>
+        <NavLink className='w-[16rem] h-[2.2rem] bg-gradient-to-b from-blue-500 to-blue-600 text-white rounded-lg shadow-md border-[0.01rem] border-blue-700 font-medium flex justify-center items-center' to={'/conversation'}>
+          Get Help with Guide!
+        </NavLink>
+
+        <NavLink className='w-[16rem] h-[2.2rem] rounded-lg shadow-md border-[0.01rem] border-black/10 font-medium flex justify-center items-center' onClick={getHintHandler} to={'/chat'}>
           Get Hint
         </NavLink>
 
@@ -153,9 +179,13 @@ export default function Home() {
           View Solution
         </NavLink>
 
-        <NavLink className=' w-[16rem] h-[2.2rem] rounded-lg shadow-md border-[0.01rem] border-black/10 font-medium flex justify-center items-center' to={'/conversation'}>
-          Get Help!
-        </NavLink>
+        {
+          auth ?
+          null :
+          <NavLink className=' w-[16rem] h-[2.2rem] bg-gradient-to-b from-blue-500 to-blue-600 text-white rounded-lg shadow-md border-[0.01rem] border-blue-700 font-medium flex justify-center items-center' to={`https://github.com/login/oauth/authorize?client_id=${clientId}`} target='_blank' >
+            Authenticate
+          </NavLink>
+        }
 
       </div>
 

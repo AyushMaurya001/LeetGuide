@@ -68,6 +68,8 @@ export default function ConversationComp() {
       ],
     };
     setChat([...chat, currentText]);
+    // localStorage.setItem('chat' + Math.random(), chat);
+    // localStorage can be used to save chat and access chat of a particular question or its history easily
     const result = await axios.post(import.meta.env.VITE_API_URL + "/api/v1/chat", [...chat, currentText]);
     if (result.data.data){
       setChat([...chat, currentText, {

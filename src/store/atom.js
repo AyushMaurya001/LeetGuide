@@ -43,3 +43,8 @@ export const answerButtonDisplayStatusAtom = atom({
   key: 'answerButtonDisplayStatusAtomKey',
   default: false
 })
+
+export const githubAuthCodeAtom = atom({
+  key: 'githubAuthCodeAtomKey',
+  default: ''
+})
